@@ -3,8 +3,6 @@ package LessonsOne;
 import LessonsOne.interfaces.Jumaple;
 import LessonsOne.interfaces.Passable;
 import LessonsOne.interfaces.Runnerable;
-import LessonsOne.track.Road;
-import LessonsOne.track.Wall;
 
 import java.util.Random;
 
