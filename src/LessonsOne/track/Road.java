@@ -33,4 +33,9 @@ public class Road implements Runnerable {
     public void pass(Passable passable) {
         run((Runnerable) passable);
     }
+
+    @Override
+    public void info() {
+        System.out.println("Road have distance: " + getLen());
+    }
 }

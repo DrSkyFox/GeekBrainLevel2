@@ -84,4 +84,10 @@ public class Robot implements Jumaple, Runnerable{
                ", move=" + move +
                '}';
     }
+
+    @Override
+    public void info() {
+        System.out.println(toString());
+        System.out.println("Stage completed: " + stageEnded);
+    }
 }

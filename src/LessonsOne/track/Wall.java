@@ -4,13 +4,13 @@ import LessonsOne.interfaces.Jumaple;
 import LessonsOne.interfaces.Passable;
 
 public class Wall implements Jumaple {
-    private int height;
+    private double height;
 
-    public Wall(int height) {
+    public Wall(double height) {
         this.height = height;
     }
 
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
 
@@ -33,4 +33,8 @@ public class Wall implements Jumaple {
         jump((Jumaple) passable);
     }
 
+    @Override
+    public void info() {
+        System.out.println("Wall have height: " + getHeight());
+    }
 }

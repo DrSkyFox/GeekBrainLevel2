@@ -24,7 +24,7 @@ public class Cat implements Jumaple, Runnerable {
 
     public Cat() {
         this.jumHeight = new Random().nextDouble()*2;
-        this.runDistance = new Random().nextInt(400);
+        this.runDistance = new Random().nextInt(3000);
         ++iD;
         move = true;
     }
@@ -83,5 +83,11 @@ public class Cat implements Jumaple, Runnerable {
                ", runDistance=" + runDistance +
                ", move=" + move +
                '}';
+    }
+
+    @Override
+    public void info() {
+        System.out.println(toString());
+        System.out.println("Stage completed: " + stageEnded);
     }
 }

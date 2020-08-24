@@ -24,7 +24,7 @@ public class Human implements Jumaple, Runnerable{
 
     public Human() {
         this.jumHeight = new Random().nextDouble()*1.5;
-        this.runDistance = new Random().nextInt(3000);
+        this.runDistance = new Random().nextInt(6000);
         ++iD;
         move = true;
     }
@@ -83,5 +83,11 @@ public class Human implements Jumaple, Runnerable{
                ", runDistance=" + runDistance +
                ", move=" + move +
                '}';
+    }
+
+    @Override
+    public void info() {
+        System.out.println(toString());
+        System.out.println("Stage completed: " + stageEnded);
     }
 }
