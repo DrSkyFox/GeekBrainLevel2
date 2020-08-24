@@ -1,12 +1,12 @@
 package LessonsOne;
 
-import LessonsOne.interfaces.JumpAndRunnable;
-import LessonsOne.track.Road;
-import LessonsOne.track.Wall;
+import LessonsOne.interfaces.Jumaple;
+import LessonsOne.interfaces.Passable;
+import LessonsOne.interfaces.Runnerable;
 
 import java.util.Random;
 
-public class Robot implements JumpAndRunnable {
+public class Robot implements Jumaple, Runnerable{
 
     private double jumHeight;
     private int runDistance;
@@ -23,8 +23,8 @@ public class Robot implements JumpAndRunnable {
 
 
     public Robot() {
-        this.jumHeight = new Random().nextDouble()*10;
-        this.runDistance = new Random().nextInt(12000);
+        this.jumHeight = new Random().nextDouble()*20;
+        this.runDistance = new Random().nextInt(9000);
         ++iD;
         move = true;
     }
@@ -38,13 +38,14 @@ public class Robot implements JumpAndRunnable {
     }
 
     @Override
-    public void stageComplete() {
-        System.out.println("Robot" + iD +"-> Stage completed: " + stageEnded);
+    public void pass(Passable passable) {
+        System.out.println();
     }
 
     @Override
-    public void jump(Wall wall) {
-        if((wall.getHeight() > jumHeight) || !move) {
+    public void jump(Jumaple jumaple) {
+
+        if((jumaple.getHeightObject() > jumHeight) || !move) {
             System.out.println("Robot cant jump");
             move = false;
             return;
@@ -54,20 +55,30 @@ public class Robot implements JumpAndRunnable {
     }
 
     @Override
-    public void run(Road road) {
-        if((road.getLen() > runDistance) || !move) {
+    public double getHeightObject() {
+        return this.jumHeight;
+    }
+
+    @Override
+    public void run(Runnerable runnerable) {
+        if( (runnerable.getDistanceObject() > runDistance) || !move ) {
             System.out.println("Robot cant run");
             move = false;
             return;
         }
-        stageEnded++;
+        stageEnded ++;
         System.out.println(new StringBuilder().append("Robot ").append(iD).append(" runned").toString());
+    }
+
+    @Override
+    public double getDistanceObject() {
+        return runDistance;
     }
 
     @Override
     public String toString() {
         return "Robot{" +
-               "ID = "+ iD  +
+               "ID = " + iD +
                ", jumHeight=" + jumHeight +
                ", runDistance=" + runDistance +
                ", move=" + move +

@@ -1,6 +1,10 @@
 package LessonsOne.track;
 
-public class Road {
+
+import LessonsOne.interfaces.Passable;
+import LessonsOne.interfaces.Runnerable;
+
+public class Road implements Runnerable {
     private int len;
 
     public Road(int len) {
@@ -13,5 +17,20 @@ public class Road {
 
     public void setLen(int len) {
         this.len = len;
+    }
+
+    @Override
+    public void run(Runnerable runnerable) {
+        runnerable.run(this);
+    }
+
+    @Override
+    public double getDistanceObject() {
+        return getLen();
+    }
+
+    @Override
+    public void pass(Passable passable) {
+        run((Runnerable) passable);
     }
 }

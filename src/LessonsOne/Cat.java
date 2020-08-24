@@ -1,12 +1,14 @@
 package LessonsOne;
 
-import LessonsOne.interfaces.JumpAndRunnable;
+import LessonsOne.interfaces.Jumaple;
+import LessonsOne.interfaces.Passable;
+import LessonsOne.interfaces.Runnerable;
 import LessonsOne.track.Road;
 import LessonsOne.track.Wall;
 
 import java.util.Random;
 
-public class Cat implements JumpAndRunnable {
+public class Cat implements Jumaple, Runnerable {
 
     private double jumHeight;
     private int runDistance;
@@ -38,14 +40,14 @@ public class Cat implements JumpAndRunnable {
     }
 
     @Override
-    public void stageComplete() {
-        System.out.println("Cat" + iD +"-> Stage completed: " + stageEnded);
+    public void pass(Passable passable) {
+        System.out.println();
     }
 
     @Override
-    public void jump(Wall wall) {
+    public void jump(Jumaple jumaple) {
 
-        if((wall.getHeight() > jumHeight) || !move) {
+        if((jumaple.getHeightObject() > jumHeight) || !move) {
             System.out.println("Cat cant jump");
             move = false;
             return;
@@ -55,16 +57,25 @@ public class Cat implements JumpAndRunnable {
     }
 
     @Override
-    public void run(Road road) {
-        if( (road.getLen() > runDistance) || !move) {
+    public double getHeightObject() {
+        return this.jumHeight;
+    }
+
+    @Override
+    public void run(Runnerable runnerable) {
+        if( (runnerable.getDistanceObject() > runDistance) || !move ) {
             System.out.println("Cat cant run");
             move = false;
             return;
         }
-        stageEnded++;
+        stageEnded ++;
         System.out.println(new StringBuilder().append("Cat ").append(iD).append(" runned").toString());
     }
 
+    @Override
+    public double getDistanceObject() {
+        return runDistance;
+    }
 
     @Override
     public String toString() {

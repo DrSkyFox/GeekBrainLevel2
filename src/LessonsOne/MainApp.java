@@ -1,49 +1,43 @@
 package LessonsOne;
 
-import LessonsOne.interfaces.JumpAndRunnable;
+import LessonsOne.interfaces.Passable;
 import LessonsOne.track.Road;
-import LessonsOne.track.Track;
 import LessonsOne.track.Wall;
+
+import java.util.Random;
 
 public class MainApp {
     public static void main(String[] args) {
-        JumpAndRunnable[] testSubjects = new JumpAndRunnable[] {
+        Random random = new Random();
+
+        Passable[] testSubjects = new Passable[]{
                 new Cat(),
                 new Human(),
                 new Robot()
         };
 
-        Track track = new Track(15);
 
-        runAndJump(testSubjects, track);
-        for (JumpAndRunnable jaR: testSubjects
-             ) {
-            jaR.stageComplete();
-        }
+        Passable[] objects = new Passable[] {
+                new Road(random.nextInt(7000)),
+                new Wall(random.nextInt(2)),
+                new Road(random.nextInt(7000)),
+                new Wall(random.nextInt(2))
+        };
+        runAndJump(testSubjects, objects);
     }
 
-    private static void runAndJump(JumpAndRunnable[] runnable, Track track) {
+    private static void runAndJump(Passable[] runnable, Passable[] track) {
         int stage = 0;
-        for (Object o: track.getObjects()
+
+        for (Passable passable: track
              ) {
-            System.out.println("Stage: " + (++stage));
-            switch (o.getClass().getName()) {
-                case "LessonsOne.track.Wall":
-                    System.out.println("Препятсвие Wall: "  + ((Wall) o).getHeight());
-                    for (JumpAndRunnable r: runnable
-                         ) {
-                        r.jump((Wall) o);
-                    }
-                    break;
-                case "LessonsOne.track.Road":
-                    System.out.println("Препятсвие Road: "  + ((Road) o).getLen());
-                    for (JumpAndRunnable r: runnable
-                         ) {
-                        r.run((Road) o);
-                    }
-                    break;
+            for (Passable r: runnable
+                 ) {
+                passable.pass(r);
             }
         }
+
+
     }
 
 }
