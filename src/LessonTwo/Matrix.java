@@ -56,13 +56,7 @@ public class Matrix {
                 try {
                     matrixInt[i][j] = Integer.parseInt(matrix[i][j]);
                 } catch (NumberFormatException e) {
-                    throw new MyArrayDataException(
-                            new StringBuilder().append("Cant parse string: \"").
-                            append(matrix[i][j]).
-                            append("\" to intger. ").
-                            append("Cell of matrix: [").
-                            append(i).append("][").
-                            append(j).append("]").toString());
+                    throw new MyArrayDataException("Error in function \"setStringMatrixToIntMatrix\" ",i,j);
                 }
                 sum = sum + matrixInt[i][j];
             }

@@ -15,7 +15,7 @@ public class MainExcepApp {
         System.out.println("RunProg");
         Matrix matrix = new Matrix();
         matrix.printMatrix(matrix.getMatrix());
-        System.out.println(matrix.isSquare());
+
 
         String[][] chMattix = new String[][] {
                 {"1", "2", "3", "4"},
