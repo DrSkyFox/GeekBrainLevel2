@@ -61,9 +61,10 @@ public class Matrix {
             }
         } catch (NumberFormatException e) {
             throw new MyArrayDataException(
-                    new StringBuilder().append("Cant parse string: \"").
+                    new StringBuilder().
+                            append("Cant parse string: \"").
                             append(matrix[i][j]).
-                            append("\" to intger. ").
+                            append("\" to integer. ").
                             append("Cell of matrix: [").
                             append(i).append("][").
                             append(j).append("]").
