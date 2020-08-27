@@ -11,11 +11,11 @@ public class Matrix {
     }
 
     public Matrix() {
-        matrix = new String[][]{
+        matrix = new String[][] {
                 {"1", "2", "3", "4"},
                 {"5", "f", "6", "7"},
                 {"8", "9", "10", "10"},
-                {"12", "13", "15", "16"}
+                {"12", "13", "15" , "16"}
         };
     }
 
@@ -29,8 +29,8 @@ public class Matrix {
     }
 
     public void printMatrix(Object[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
+        for (int i = 0; i <matrix.length; i++) {
+            for (int j = 0; j <matrix[i].length; j++) {
                 System.out.print(matrix[i][j]);
                 System.out.print(" ");
             }
@@ -42,8 +42,8 @@ public class Matrix {
         return sizeMatrix;
     }
 
-    public void setMatrix(String[][] matrix) throws MyArraySizeException {
-        if (!isEqualSize(matrix)) {
+    public void setMatrix(String[][] matrix) throws MyArraySizeException{
+        if(!isEqualSize(matrix)) {
             throw new MyArraySizeException("Different size matrix !");
         }
         this.matrix = matrix;
@@ -51,24 +51,21 @@ public class Matrix {
 
     public Integer[][] setStringMatrixToIntMatrix() throws MyArrayDataException {
         Integer[][] matrixInt = new Integer[matrix.length][matrix.length];
-        int i = 0, j = 0;
-        try {
-            for (i = 0; i < matrix.length; i++) {
-                for (j = 0; j < matrix[i].length; j++) {
+        for (int i = 0; i <matrix.length; i++) {
+            for (int j = 0; j <matrix[i].length; j++) {
+                try {
                     matrixInt[i][j] = Integer.parseInt(matrix[i][j]);
-                    sum = sum + matrixInt[i][j];
-                }
-            }
-        } catch (NumberFormatException e) {
-            throw new MyArrayDataException(
-                    new StringBuilder().
-                            append("Cant parse string: \"").
+                } catch (NumberFormatException e) {
+                    throw new MyArrayDataException(
+                            new StringBuilder().append("Cant parse string: \"").
                             append(matrix[i][j]).
-                            append("\" to integer. ").
+                            append("\" to intger. ").
                             append("Cell of matrix: [").
                             append(i).append("][").
-                            append(j).append("]").
-                            toString());
+                            append(j).append("]").toString());
+                }
+                sum = sum + matrixInt[i][j];
+            }
         }
         return matrixInt;
     }
@@ -77,11 +74,12 @@ public class Matrix {
 // CHECKERS
 
 
+
     public boolean isSquare() {
         boolean check = true;
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                if (matrix.length != matrix[i].length) {
+        for (int i = 0; i <matrix.length; i++) {
+            for (int j = 0; j <matrix[i].length; j++) {
+                if(matrix.length != matrix[i].length) {
                     check = false;
                     return check;
                 }
@@ -92,12 +90,12 @@ public class Matrix {
     }
 
     private boolean isEqualSize(String[][] matrix) {
-        if (matrix.length != this.matrix.length) {
+        if(matrix.length != this.matrix.length) {
             return false;
         }
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                if (this.matrix.length != matrix[i].length) {
+        for (int i = 0; i <matrix.length; i++) {
+            for (int j = 0; j <matrix[i].length; j++) {
+                if(this.matrix.length != matrix[i].length) {
                     return false;
                 }
             }

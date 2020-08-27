@@ -43,7 +43,9 @@ public class MainExcepApp {
             matrix.printMatrix(matrix.setStringMatrixToIntMatrix());
         } catch (MyArrayDataException e) {
             System.out.println(e.getMessage());
+            System.out.println("PreSum: " + matrix.getSum());
             e.printStackTrace();
+            return;
         }
 
         System.out.println("Sum: " + matrix.getSum());
