@@ -14,7 +14,6 @@ public class ListOfWord {
         generateRandomWords(wordsCount, 10);
     }
 
-
     public ListOfWord(List<SomeWord> someWords) {
         this.someWords = someWords;
     }
@@ -87,7 +86,6 @@ public class ListOfWord {
             System.out.println(word.toString());
         }
     }
-
 
     @Override
     public String toString() {
