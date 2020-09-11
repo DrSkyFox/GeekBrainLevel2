@@ -34,7 +34,7 @@ public class Server {
                     try {
                         while (true) {
                             String message = inSD.readUTF();
-                            System.out.println(message);
+                            System.out.println("Incoming message: " + message);
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -45,12 +45,11 @@ public class Server {
             Thread outStreamThread = new Thread(new Runnable() {
                 @Override
                 public void run() {
+                    System.out.println("Введите сообщение");
                     while (true) {
                         try {
-                            System.out.println("Введите сообщение");
                             String message = scanner.nextLine();
                             outSD.writeUTF(message);
-                            System.out.println(outSD);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

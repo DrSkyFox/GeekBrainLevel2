@@ -37,12 +37,12 @@ public class Client {
                 public void run() {
                     try {
                         while (true) {
-                            System.out.println("Считываю входящий");
+
                             String message = inSD.readUTF();
                             if (charArea != null) {
                                 charArea.append(message);
                             } else {
-                                System.out.println(message);
+                                System.out.println("Считываю входящий: " + message);
                             }
                         }
                     } catch (IOException e) {
@@ -51,13 +51,17 @@ public class Client {
                 }
             });
 
+            inStreamDataThread.start();
+
+
             if (charArea == null) {
                 Thread outStreamDataThread = new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
+                            System.out.println("Напишите сообщение: ");
                             while (true) {
-                                System.out.println("Напишите сообщение: ");
+
                                 String message = scanner.nextLine();
                                 outSD.writeUTF(message);
                                 if (charArea != null) {
@@ -78,10 +82,8 @@ public class Client {
                     e.printStackTrace();
                 }
             }
-
-            inStreamDataThread.start();
-
             inStreamDataThread.join();
+
 
         }
         catch (IOException e) {
