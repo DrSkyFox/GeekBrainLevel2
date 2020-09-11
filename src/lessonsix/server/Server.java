@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.Scanner;
 
 public class Server {
@@ -67,7 +68,8 @@ public class Server {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        } finally {
+        }
+        finally {
             try {
                 inSD.close();
                 outSD.close();
