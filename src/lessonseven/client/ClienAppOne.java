@@ -18,12 +18,13 @@ public class ClienAppOne {
                         try {
                             String message = in.readUTF();
                             System.out.println(message);
-                            Thread.sleep(10000);
+                            Thread.sleep(14000);
                             if (message.contains("Incorrect credentials")) {
                                 out.writeUTF("-auth l1 p1");
                             }
                         } catch (IOException | InterruptedException e) {
                             e.printStackTrace();
+                            break;
                         }
 
                     }

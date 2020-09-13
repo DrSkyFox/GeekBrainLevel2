@@ -27,6 +27,7 @@ public class ClienAppTwo {
                             out.writeUTF("/w u1 hello");
                         } catch (IOException | InterruptedException e) {
                             e.printStackTrace();
+                            break;
                         }
                     }
                 }

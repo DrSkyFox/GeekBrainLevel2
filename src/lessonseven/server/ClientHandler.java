@@ -16,7 +16,7 @@ public class ClientHandler {
     private DataOutputStream out;
     private Server server;
     private ExecutorService executorService;
-    private static int timeOutSeconds = 120;
+    private static int timeOutSeconds = 12;
 
     public static int getTimeOutSeconds() {
         return timeOutSeconds;
@@ -49,25 +49,28 @@ public class ClientHandler {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Future<Boolean> future = (Future<Boolean>) executorService.submit(() -> {
-                    try {
-                        authenticate();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
+//                Future<Boolean> future = (Future<Boolean>) executorService.submit(() -> {
+//                    try {
+//                        authenticate();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                });
                 try {
-                    future.get(timeOutSeconds,TimeUnit.SECONDS);
-                    executorService.shutdown();
+//                    future.get(timeOutSeconds,TimeUnit.SECONDS);
+//                    executorService.shutdown();
+                    auth();
                     readMessage();
                 } catch (IOException e) {
                     e.printStackTrace();
-                } catch (InterruptedException e) {
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                } catch (ExecutionException e) {
+//                    e.printStackTrace();
+//                } catch (TimeoutException e) {
+//                    System.out.println("Время вышло");
+                } catch (AuthTimeOutException e) {
                     e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                } catch (TimeoutException e) {
-                    System.out.println("Время вышло");
                 } finally {
                     closeConnection();
                 }
@@ -154,5 +157,30 @@ public class ClientHandler {
         }
     }
 
+    public void auth() throws AuthTimeOutException {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    authenticate();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        thread.start();
+        try {
+            thread.join(timeOutSeconds*1000);
+            System.out.println("thread join and status : " + thread.isAlive());
+            if(thread.isAlive()) {
+                System.out.println("Interrupt");
+                thread.interrupt();
+                throw new AuthTimeOutException("Time ended", (timeOutSeconds*1000));
+            }
+        } catch (InterruptedException e) {
+            System.out.println("Catch exception");
+        }
+    }
 
 }

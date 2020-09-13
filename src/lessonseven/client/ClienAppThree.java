@@ -28,6 +28,7 @@ public class ClienAppThree {
                                          "I'm the devil, I love metal!");
                         } catch (IOException | InterruptedException e) {
                             e.printStackTrace();
+                            break;
                         }
                     }
                 }
