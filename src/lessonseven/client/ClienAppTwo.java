@@ -19,11 +19,10 @@ public class ClienAppTwo {
                         try {
                             String message = in.readUTF();
                             System.out.println(message);
-                            Thread.sleep(5000);
+                            Thread.sleep(50);
                             if (message.contains("Incorrect credentials")) {
                                 out.writeUTF("-auth l2 p2");
                             }
-                            Thread.sleep(5000);
                             out.writeUTF("/w u1 hello");
                         } catch (IOException | InterruptedException e) {
                             e.printStackTrace();

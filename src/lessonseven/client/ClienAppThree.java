@@ -19,11 +19,10 @@ public class ClienAppThree {
                         try {
                             String message = in.readUTF();
                             System.out.println(message);
-                            Thread.sleep(1000);
+                            Thread.sleep(50);
                             if (message.contains("Incorrect credentials")) {
                                 out.writeUTF("-auth l3 p3");
                             }
-                            Thread.sleep(1000);
                             out.writeUTF("Fine! Let the rock off begin! Ah ha ha ha ha ha ha!\n" +
                                          "I'm the devil, I love metal!");
                         } catch (IOException | InterruptedException e) {

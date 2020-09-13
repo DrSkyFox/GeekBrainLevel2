@@ -16,9 +16,9 @@ public class ClienAppOne {
                 public void run() {
                     while (true) {
                         try {
+                            Thread.sleep(50);
                             String message = in.readUTF();
                             System.out.println(message);
-                            Thread.sleep(14000);
                             if (message.contains("Incorrect credentials")) {
                                 out.writeUTF("-auth l1 p1");
                             }

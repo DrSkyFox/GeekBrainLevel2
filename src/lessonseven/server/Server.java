@@ -44,7 +44,7 @@ public class Server {
         }
     }
 
-    public void broadcast(ClientHandler clientHandler, String incomingMessage) {
+    public synchronized void broadcast(ClientHandler clientHandler, String incomingMessage) {
         for (ClientHandler ch : clientHandlers) {
             if (!ch.equals(clientHandler)) {
                 ch.sendMessage(String.format("%s said : %s", clientHandler.getName(), incomingMessage));
@@ -52,14 +52,14 @@ public class Server {
         }
     }
 
-    public void broadcast(String incomingMessage) {
+    public synchronized void broadcast(String incomingMessage) {
         for (ClientHandler ch : clientHandlers) {
             ch.sendMessage(incomingMessage);
         }
     }
 
 
-    public void broadcast(ClientHandler clientHandler, String nameClient, String incomingMessage) {
+    public synchronized void broadcast(ClientHandler clientHandler, String nameClient, String incomingMessage) {
         for (ClientHandler ch: clientHandlers
              ) {
             if(ch.getName().equals(nameClient)) {
