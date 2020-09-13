@@ -24,7 +24,7 @@ public class ClienAppOne {
                             }
                         } catch (IOException | InterruptedException e) {
                             e.printStackTrace();
-                            break;
+                            return;
                         }
 
                     }
