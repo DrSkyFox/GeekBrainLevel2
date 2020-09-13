@@ -15,8 +15,13 @@ public class AuthTimeOutException extends Exception{
         this.timeOut =timeOut;
     }
 
+    public String getErrorMsg() {
+        return  msg +  timeOut;
+    }
+
     @Override
     public String getMessage() {
-        return super.getMessage() + " " + msg +  timeOut;
+        return super.getMessage()  + "... " + getErrorMsg();
     }
+
 }
