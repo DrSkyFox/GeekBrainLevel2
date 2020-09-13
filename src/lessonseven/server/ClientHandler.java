@@ -16,7 +16,7 @@ public class ClientHandler {
     private DataOutputStream out;
     private Server server;
     private ExecutorService executorService;
-    private static int timeOutSeconds = 12;
+    private static int timeOutSeconds = 120;
 
     public static int getTimeOutSeconds() {
         return timeOutSeconds;
