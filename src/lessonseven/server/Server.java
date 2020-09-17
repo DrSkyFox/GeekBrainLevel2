@@ -69,11 +69,11 @@ public class Server {
         }
     }
 
-    public void subscribe(ClientHandler client) {
+    public synchronized void subscribe(ClientHandler client) {
         clientHandlers.add(client);
     }
 
-    public void unsubscribe(ClientHandler client) {
+    public synchronized void unsubscribe(ClientHandler client) {
         clientHandlers.remove(client);
     }
 
