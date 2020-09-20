@@ -109,7 +109,16 @@ public class DoubleLinkList {
 
         @Override
         public void add(String o) {
-            DoubleLinkList.this.add(o);
+            if(next == null) {
+                DoubleLinkList.this.add(o);
+                return;
+            }
+            Node node = new Node(o);
+            node.prev = current;
+            node.next = next;
+
+            node.next = node;
+            size++;
         }
 
         @Override
