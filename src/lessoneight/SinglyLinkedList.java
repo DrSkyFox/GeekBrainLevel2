@@ -1,10 +1,9 @@
 package lessoneight;
 
 
-public class SinglyLinkedList implements GeekBrainList {
+public class SinglyLinkedList  {
     private Node head;
 
-    @Override
     public void add(String o) {
         if (head == null) {
             head = new Node(o);
@@ -15,25 +14,25 @@ public class SinglyLinkedList implements GeekBrainList {
     }
 
     private void add(Node current, String o) {
-        if (current.getNext() == null) {
-            current.setNext(new Node(o));
+        if (current.next == null) {
+            current.next = new Node(o);
             return;
         }
-        add(current.getNext(), o);
+        add(current.next, o);
     }
 
-    @Override
+
     public void remove(String o) {
         if (head == null) {
             return;
         } else {
-            if (head.getVal().equals(o)) {
-                head = head.getNext();
+            if (head.val.equals(o)) {
+                head = head.next;
                 return;
             }
         }
 
-        remove(head, head.getNext(), o);
+        remove(head, head.next, o);
     }
 
     private void remove(Node prev, Node current, String o) {
@@ -41,12 +40,12 @@ public class SinglyLinkedList implements GeekBrainList {
             return;
         }
 
-        if (current.getVal().equals(o)) {
-            prev.setNext(current.getNext());
+        if (current.val.equals(o)) {
+            prev.next = current.next;
             return;
         }
 
-        remove(current, current.getNext(), o);
+        remove(current, current.next, o);
     }
 
     private static class Node {
@@ -58,30 +57,65 @@ public class SinglyLinkedList implements GeekBrainList {
         }
 
         public Node(String val, Node next) {
-            this.val = val;
-            this.next = next;
-        }
+        this.val = val;
+        this.next = next;
+    }
 
-        public String getVal() {
-            return val;
-        }
+    MyIter<String> iterator() {
+            return new ItrList();
+    }
 
-        public Node getNext() {
-            return next;
-        }
+    class ItrList implements MyIter<String> {
+        private Node current;
+        private Node next;
 
-        public void setNext(Node next) {
-            this.next = next;
+        public ItrList() {
+            current = head;
         }
 
         @Override
-        public String toString() {
-            return "Node{" +
-                   "val='" + val + '\'' +
-                   ", next=" + next +
-                   '}';
+        public void add(String o) {
+            if (current.next == null) {
+                current.next = new Node(o);
+                return;
+            }
+            add(current.next, o);
+        }
+
+        @Override
+        public void remove(String o) {
+
+        }
+
+        @Override
+        public String next() {
+            return null;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return false;
+        }
+
+        @Override
+        public void set(String s) {
+
+        }
+
+        @Override
+        public String get() {
+            return null;
         }
     }
+
+    @Override
+    public String toString() {
+        return "Node{" +
+               "val='" + val + '\'' +
+               ", next=" + next +
+               '}';
+    }
+}
 
     @Override
     public String toString() {
