@@ -31,6 +31,9 @@ public class Main {
 
         System.out.println(doubleLinkList);
 
+        doubleLinkList.remove("Honda");
+        System.out.println(doubleLinkList);
+
 
 
 

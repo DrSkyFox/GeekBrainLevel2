@@ -18,7 +18,7 @@ public class DoubleLinkList {
     private void add(DoubleLinkList.Node current, String o) {
         if (current.next == null) {
             Node nodeNew = new Node(o);
-            nodeNew.prev = head;
+            nodeNew.prev = current;
             current.next = nodeNew;
             last = nodeNew;
             size++;
@@ -49,15 +49,15 @@ public class DoubleLinkList {
             return;
         }
         if (current.val.equals(o)) {
-            if(current == last) {
+            if (current == last) {
                 last = current.prev;
                 current.prev.next = null;
                 size--;
                 return;
             }
             Node node = current.next;
-            node.prev =  prev;
-            prev.next=node;
+            node.prev = prev;
+            prev.next = node;
             size--;
             return;
         }
@@ -90,7 +90,7 @@ public class DoubleLinkList {
 
         @Override
         public String next() {
-            if(hasNext()) {
+            if (hasNext()) {
                 current = next;
                 next = next.next;
             }
@@ -99,8 +99,7 @@ public class DoubleLinkList {
 
         @Override
         public String prev() {
-            if(hasPrev())
-            {
+            if (hasPrev()) {
                 current = current.prev;
                 next = current.prev;
             }
@@ -123,6 +122,7 @@ public class DoubleLinkList {
             return current.next == null ? false : true;
 
         }
+
         @Override
         public boolean hasPrev() {
             return current.prev == null ? false : true;
@@ -133,8 +133,9 @@ public class DoubleLinkList {
         return new DescIterator();
     }
 
-    class DescIterator implements MyIter<String>{
+    class DescIterator implements MyIter<String> {
         private final ItrList itrList = new ItrList();
+
         @Override
         public void add(String o) {
             itrList.add(o);
@@ -158,7 +159,7 @@ public class DoubleLinkList {
 
         @Override
         public void set(String s) {
-            itrList.current.val =s;
+            itrList.current.val = s;
         }
 
         @Override
@@ -166,8 +167,6 @@ public class DoubleLinkList {
             return itrList.current.val;
         }
     }
-
-
 
 
     private static class Node {
@@ -179,7 +178,7 @@ public class DoubleLinkList {
             this(val, null, null);
         }
 
-        public Node(String val, Node prev , Node next) {
+        public Node(String val, Node prev, Node next) {
             this.val = val;
             this.next = next;
             this.prev = prev;
@@ -190,7 +189,7 @@ public class DoubleLinkList {
         public String toString() {
             return "Node{" +
                    "val='" + val + '\'' +
-                   ", next=" + next +
+                   ", prev=" + prev +
                    '}';
         }
     }
@@ -198,12 +197,11 @@ public class DoubleLinkList {
     @Override
     public String toString() {
         return "{" +
-               head +
+               last +
                '}';
 
 
     }
-
 
 
 }

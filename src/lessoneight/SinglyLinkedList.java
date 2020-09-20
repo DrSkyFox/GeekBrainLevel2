@@ -1,7 +1,7 @@
 package lessoneight;
 
 
-public class SinglyLinkedList  {
+public class SinglyLinkedList {
     private Node head;
 
     public void add(String o) {
@@ -57,12 +57,21 @@ public class SinglyLinkedList  {
         }
 
         public Node(String val, Node next) {
-        this.val = val;
-        this.next = next;
+            this.val = val;
+            this.next = next;
+        }
+
+        @Override
+        public String toString() {
+            return "Node{" +
+                   "val='" + val + '\'' +
+                   ", next=" + next +
+                   '}';
+        }
     }
 
     MyIter<String> iterator() {
-            return new ItrList();
+        return new ItrList();
     }
 
     class ItrList implements MyIter<String> {
@@ -71,51 +80,42 @@ public class SinglyLinkedList  {
 
         public ItrList() {
             current = head;
+            next = current.next;
         }
 
         @Override
         public void add(String o) {
-            if (current.next == null) {
-                current.next = new Node(o);
-                return;
-            }
-            add(current.next, o);
+            SinglyLinkedList.this.add(o);
         }
 
         @Override
         public void remove(String o) {
-
+            SinglyLinkedList.this.remove(o);
         }
 
         @Override
         public String next() {
-            return null;
+            current = next;
+            next = current.next;
+            return current.val;
         }
 
         @Override
         public boolean hasNext() {
-            return false;
+            return current.next == null ? false : true;
         }
 
         @Override
         public void set(String s) {
-
+            current.val = s;
         }
 
         @Override
         public String get() {
-            return null;
+            return current.val;
         }
     }
 
-    @Override
-    public String toString() {
-        return "Node{" +
-               "val='" + val + '\'' +
-               ", next=" + next +
-               '}';
-    }
-}
 
     @Override
     public String toString() {
@@ -123,7 +123,6 @@ public class SinglyLinkedList  {
                head +
                '}';
     }
-
 
 
 }
