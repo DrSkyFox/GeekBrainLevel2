@@ -28,7 +28,10 @@ public class Main {
         System.out.println(myIter.next());
         myIter.set("Tsuma");
         System.out.println(myIter.get());
-
+        myIter.add("System");
+        System.out.println(myIter.next());
+        System.out.println(myIter.next());
+        System.out.println("--------------------");
         System.out.println(doubleLinkList);
 
         doubleLinkList.remove("Honda");

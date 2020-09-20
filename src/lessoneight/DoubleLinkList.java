@@ -1,6 +1,5 @@
 package lessoneight;
 
-
 public class DoubleLinkList {
 
     private Node head;
@@ -109,16 +108,17 @@ public class DoubleLinkList {
 
         @Override
         public void add(String o) {
-            if(next == null) {
-                DoubleLinkList.this.add(o);
-                return;
+            Node nodeNew = new Node(o);
+            if(hasNext()) {
+                nodeNew.next =next;
             }
-            Node node = new Node(o);
-            node.prev = current;
-            node.next = next;
+            nodeNew.prev = current;
 
-            node.next = node;
+            next.prev = nodeNew;
+            current.next = nodeNew;
+            next = nodeNew;
             size++;
+
         }
 
         @Override
@@ -198,15 +198,17 @@ public class DoubleLinkList {
         public String toString() {
             return "Node{" +
                    "val='" + val + '\'' +
-                   ", prev=" + prev +
+                   ", prev=" + next +
                    '}';
         }
     }
 
+
+
     @Override
     public String toString() {
         return "{" +
-               last +
+               head +
                '}';
 
 
